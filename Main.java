@@ -2,15 +2,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Main
+public class Main extends JFrame
 {
-	static JFrame frame = new JFrame();
-	public static void main(String args[])
+	public Main()
 	{
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(Game.WIDTH,Game.HEIGHT);
-		frame.setLocationRelativeTo(null);
-	    //frame.setUndecorated(true);
+		super("單機遊戲");
+		setResizable(false);
+		setSize(Game.WIDTH,Game.HEIGHT);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		Game game=new Game();
 		Timer timer=new Timer(5,new ActionListener()
 			{
@@ -21,8 +21,9 @@ public class Main
 				}
 			});
 		game.setVisible(true);
-		frame.add(game);
-		frame.setVisible(true);
+		this.add(game);
+		this.setVisible(true);
 		timer.start();
+
 	}
 }
