@@ -6,7 +6,7 @@ public class Main extends JFrame
 {
 	public Main()
 	{
-		super("單機遊戲");
+		super("PC GAME");
 		setResizable(false);
 		setSize(Game.WIDTH,Game.HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
