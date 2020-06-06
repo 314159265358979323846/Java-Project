@@ -5,14 +5,15 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Game extends JPanel
 {
-	static final int WIDTH=600;
-	static final int HEIGHT=800;
+	static final int WIDTH=650;
+	static final int HEIGHT=850;
 	Player player1=new Player();
 	Player player2=new Player();
 	public Game()
 	{
 		Player.addBall(new Ball());
-		Player.addBall(new Ball(10, 10, 4, 5));
+		Player.addBall(new Ball(10, 10, 5, 5));
+		Player.addBall(new Ball(200, 200, 5, -5));
 		this.setFocusable(true);
 		this.addKeyListener(new KeyListener()
 			{
