@@ -6,11 +6,11 @@ public class Main extends JFrame
 {
 	public Main()
 	{
-		super("PC GAME");
 		setResizable(false);
 		setSize(Game.WIDTH,Game.HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setUndecorated(true);
 		Game game=new Game();
 		Timer timer=new Timer(5,new ActionListener()
 			{
@@ -21,8 +21,8 @@ public class Main extends JFrame
 				}
 			});
 		game.setVisible(true);
-		this.add(game);
-		this.setVisible(true);
+		add(game);
+		setVisible(true);
 		timer.start();
 
 	}
