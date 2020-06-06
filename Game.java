@@ -48,8 +48,8 @@ public class Game extends JPanel
 							break;
 						default:
 							break;
-						}
 					}
+				}
 				public void keyTyped(KeyEvent e) {}
 			});
 	}
