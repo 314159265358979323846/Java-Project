@@ -8,6 +8,7 @@ public class Menu extends JFrame
 	JButton button2=new JButton("2 Player");
 	JButton button3=new JButton("Quit");
 	JLabel label=new JLabel("Game Menu");
+	static int person;
 	public Menu()
 	{
 		setResizable(false);
@@ -36,6 +37,7 @@ public class Menu extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
+					person=1;
 					Mode mode=new Mode();
 					dispose();
 				}
@@ -45,6 +47,7 @@ public class Menu extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
+					person=2;
 					Mode mode=new Mode();
 					dispose();
 				}

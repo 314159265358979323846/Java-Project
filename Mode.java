@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class Mode extends JFrame
 {
+	static String mode;
 	JButton button1=new JButton("Normal");
 	JButton button2=new JButton("Special");
 	JButton button3=new JButton("Return");
@@ -36,6 +37,7 @@ public class Mode extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
+					mode="normal";
 					Main main=new Main();
 					dispose();
 				}
@@ -45,6 +47,7 @@ public class Mode extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
+					mode="special";
 					Main main=new Main();
 					dispose();
 				}
