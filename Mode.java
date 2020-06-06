@@ -2,13 +2,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Menu extends JFrame
+public class Mode extends JFrame
 {
-	JButton button1=new JButton("1 Player");
-	JButton button2=new JButton("2 Player");
-	JButton button3=new JButton("Quit");
-	JLabel label=new JLabel("Game Menu");
-	public Menu()
+	JButton button1=new JButton("Normal");
+	JButton button2=new JButton("Special");
+	JButton button3=new JButton("Return");
+	JLabel label=new JLabel("Game Mode");
+	public Mode()
 	{
 		setResizable(false);
 		setSize(600,600);
@@ -36,7 +36,7 @@ public class Menu extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					Mode mode=new Mode();
+					Main main=new Main();
 					dispose();
 				}
 			});
@@ -45,7 +45,7 @@ public class Menu extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					Mode mode=new Mode();
+					Main main=new Main();
 					dispose();
 				}
 			});
@@ -54,12 +54,9 @@ public class Menu extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					System.exit(0);
+					Menu menu=new Menu();
+					dispose();
 				}
 			});
-	}
-	public static void main(String[] args)
-	{
-		new Menu();
 	}
 }
