@@ -7,8 +7,9 @@ public class Game extends JPanel
 {
 	static final int WIDTH=600;
 	static final int HEIGHT=800;
-	Player player1=new Player();
-	Player player2=new Player();
+	private Image background=new ImageIcon("img/background.png").getImage();
+	Player player1=new Player("normal",1);
+	Player player2=new Player("normal",2);
 	public Game()
 	{
 		Player.addBall(new Ball());
@@ -20,17 +21,18 @@ public class Game extends JPanel
 				{
 					switch(e.getKeyCode())
 					{
-						case KeyEvent.VK_UP:
-							Player.player_up();
-							break;
-						case KeyEvent.VK_DOWN:
-							Player.player_down();
-							break;
+						
 						case KeyEvent.VK_LEFT:
-							Player.player_left();
+							player1.player_left();
 							break;
 						case KeyEvent.VK_RIGHT:
-							Player.player_right();
+							player1.player_right();
+							break;
+						case KeyEvent.VK_A:
+							player2.player_left();
+							break;
+						case KeyEvent.VK_D:
+							player2.player_right();
 							break;
 						default:
 							break;
@@ -40,25 +42,36 @@ public class Game extends JPanel
 				{
 					switch (e.getKeyCode())
 					{
-						case KeyEvent.VK_UP:
-						case KeyEvent.VK_DOWN:
-							Player.releaseY();
-							break;
 						case KeyEvent.VK_LEFT:
+							player1.releaseX();
+							break;
 						case KeyEvent.VK_RIGHT:
-							Player.releaseX();
+							player1.releaseX();
+							break;
+						case KeyEvent.VK_A:
+							player2.releaseX();
+							break;
+						case KeyEvent.VK_D:
+							player2.releaseX();
 							break;
 						default:
 							break;
 					}
 				}
-				public void keyTyped(KeyEvent e) {}
-			});
+			
+							
+				@Override
+				public void keyTyped(KeyEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}});
 	}
 	public void paint(Graphics g)
 	{
-		player1.paint(g);
+		super.paint(g);
+		g.drawImage(background,0,0,null);
 		player2.paint(g);
+		player1.paint(g);
 		Player.balls.forEach(ball ->ball.paint(g));
 	}
 	public void move()
