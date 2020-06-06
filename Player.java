@@ -8,63 +8,64 @@ public class Player extends JPanel
 {
 	private static int playerW=100;
 	private static int playerH=100;
-	private static int playerx=Game.WIDTH/2-playerW/2;
-	private static int playery=Game.HEIGHT-playerH;
-	private static int movex=0;
-	private static int movey=0;
+	private  int playerx=Game.WIDTH/2-playerW/2;
+	private  int playery=Game.HEIGHT-playerH;
+	private  int movex=0;
+	private  int p;
+	private  String mode;
 	public static ArrayList<Ball> balls = new ArrayList<Ball>();
 	private Image player;
-	private Image computer;
-	private Image background;
 	
+	
+	public Player(String mode,int p){
+		this.mode=mode;
+		this.p=p;
+		switch (p) {
+		case 1:
+			playery=Game.HEIGHT-playerH;
+			break;
+		case 2:
+			playery=0;
+			break;
+		default:
+			break;
+		}
+		
+	}
 	public static void addBall(Ball ball)
 	{
 		balls.add(ball);
 	}
 	
-	public static int player_up()
-	{
-		return movey=-5;
-	}
-	public static int player_down()
-	{
-		return movey=5;
-	}
-	public static int player_left()
+	
+	public  int player_left()
 	{
 		return movex=-5;
 	}
-	public static int player_right()
+	public  int player_right()
 	{
 		return movex=5;
 	}
-	public static int releaseX()
+	public  int releaseX()
 	{
 		return movex=0;
 	}
-	public static int releaseY()
-	{
-		return movey=0;
-	}
+	
 	public void move()
 	{
 		playerx+=movex;
-		playery+=movey;
-		background=new ImageIcon("img/background.png").getImage();
+		
 		player=new ImageIcon("img/player.png").getImage();
 		if(playerx+playerW>Game.WIDTH)
-			movex=-1;
+			playerx=Game.WIDTH-playerW;
 		else if(playerx<=0)
-			movex=1;
-		if(playery+playerH>Game.HEIGHT)
-			movey=-1;
-		else if(playery<=0)
-			movey=1;
+			playerx=0;
+		
 	}
 	public void paint(Graphics g)
 	{
 		super.paint(g);
-		g.drawImage(background,0,0,null);
 		g.drawImage(player,playerx,playery,null);
 	}
+	
 }
