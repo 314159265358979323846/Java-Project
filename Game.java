@@ -9,10 +9,10 @@ public class Game extends JPanel
 	static final int HEIGHT=800;
 	Player player1=new Player();
 	Player player2=new Player();
-	Ball ball=new Ball();
 	public Game()
 	{
-		Ball.setPlayer(player1, player2);
+		Player.addBall(new Ball());
+		Player.addBall(new Ball(10, 10, 4, 5));
 		this.setFocusable(true);
 		this.addKeyListener(new KeyListener()
 			{
@@ -59,12 +59,12 @@ public class Game extends JPanel
 	{
 		player1.paint(g);
 		player2.paint(g);
-		ball.paint(g);
+		Player.balls.forEach(ball ->ball.paint(g));
 	}
 	public void move()
 	{
 		player1.move();
 		player2.move();
-	    ball.move();
+	    Player.balls.forEach(ball ->ball.move());
 	}
 }

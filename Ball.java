@@ -5,7 +5,7 @@ public class Ball extends JPanel
 	public Ball() 
 	{
 		setPos(Game.WIDTH/2-ballW/2, Game.HEIGHT/2-ballH/2);
-		setVel(0, 0);
+		setVel(2, 3);
 		ball=new ImageIcon("img/ball.png").getImage();
 	}
 	
@@ -14,12 +14,6 @@ public class Ball extends JPanel
 		setPos(x, y);
 		setVel(vx, vy);
 		ball=new ImageIcon("img/ball.png").getImage();
-	}
-	
-	public static void setPlayer(Player p1, Player p2)
-	{
-		player1 = p1;
-		player2 = p2;
 	}
 	
 	public int getX()
@@ -67,5 +61,4 @@ public class Ball extends JPanel
 	private int vx;
 	private int vy;
 	private Image ball;
-	private static Player player1, player2;
 }

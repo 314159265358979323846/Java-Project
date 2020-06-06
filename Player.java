@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class Player extends JPanel
@@ -10,9 +12,15 @@ public class Player extends JPanel
 	private static int playery=Game.HEIGHT-playerH;
 	private static int movex=0;
 	private static int movey=0;
+	public static ArrayList<Ball> balls = new ArrayList<Ball>();
 	private Image player;
 	private Image computer;
 	private Image background;
+	
+	public static void addBall(Ball ball)
+	{
+		balls.add(ball);
+	}
 	
 	public static int player_up()
 	{
