@@ -84,7 +84,11 @@ public class Game extends JPanel
 	public void move()
 	{
 		player1.move();
-		player2.move();
+		if(Menu.person==2) {
+			  player2.move();
+			}else {
+				player2.computerMove(Player.balls.get(0));
+			}
 	    Player.balls.forEach(ball ->ball.move());
 	}
 }
