@@ -35,8 +35,10 @@ public class Finish extends JFrame
 		getContentPane().add(button,null);
 		button.setBounds(150,450,300,100);
 		button.setFont(new Font("Time News Roman",Font.BOLD,32));
-		button.setBackground(Color.BLACK);
-		button.setForeground(Color.WHITE);
+		button.setOpaque(false);
+		button.setBackground(Color.BLUE);
+		button.setForeground(Color.BLUE);
+		button.setBorderPainted(false);
 		button.addActionListener(new ActionListener()
 			{
 				@Override

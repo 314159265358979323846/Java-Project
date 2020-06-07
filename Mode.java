@@ -18,19 +18,38 @@ public class Mode extends JFrame
 		setLayout(null);
 		setUndecorated(true);
 		setVisible(true);
-		getContentPane().add(label,null);
+		ImageIcon menu=new ImageIcon("img/mode.png");
+		JLabel img=new JLabel(menu);
+		getLayeredPane().add(img,Integer.valueOf(Integer.MIN_VALUE));
+		img.setBounds(0,0,600,600);
+		Container contain=this.getContentPane();
+		((JPanel) contain).setOpaque(false);
+		contain.add(label);
 		label.setBounds(150,0,300,100);
 		label.setFont(new Font("Time News Roman",Font.BOLD | Font.ITALIC,48));
+		label.setForeground(Color.RED);
 		Font font=new Font("Time News Roman",Font.BOLD,32);
-		getContentPane().add(button1,null);
+		contain.add(button1);
 		button1.setBounds(150,100,300,100);
 		button1.setFont(font);
-		getContentPane().add(button2,null);
+		button1.setOpaque(false);
+		button1.setBackground(Color.BLUE);
+		button1.setForeground(Color.BLUE);
+		button1.setBorderPainted(false);
+		contain.add(button2);
 		button2.setBounds(150,250,300,100);
 		button2.setFont(font);
-		getContentPane().add(button3,null);
+		button2.setOpaque(false);
+		button2.setBackground(Color.BLUE);
+		button2.setForeground(Color.BLUE);
+		button2.setBorderPainted(false);
+		contain.add(button3);
 		button3.setBounds(150,400,300,100);
 		button3.setFont(font);
+		button3.setOpaque(false);
+		button3.setBackground(Color.BLUE);
+		button3.setForeground(Color.BLUE);
+		button3.setBorderPainted(false);
 
 		button1.addActionListener(new ActionListener()
 			{
