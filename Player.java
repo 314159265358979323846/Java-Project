@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+
+
 public class Player extends JPanel
 {
 	private static int playerW=100;
@@ -13,7 +15,6 @@ public class Player extends JPanel
 	private  int movex=0;
 	private  int person;
 	public static ArrayList<Ball> balls = new ArrayList<Ball>();
-	public static int base = 1;
 	private Image player;
 	
 	
@@ -35,11 +36,8 @@ public class Player extends JPanel
 	{
 		balls.add(ball);
 	}
-	public static void popBall()
-	{
-		while(balls.size() != base)
-			balls.remove(balls.size() - 1);
-	}
+	
+	
 	public  int player_left()
 	{
 		return movex=-5;
@@ -56,7 +54,7 @@ public class Player extends JPanel
 	public void move()
 	{
 		playerx+=movex;
-		
+		toBall();
 		player=new ImageIcon("img/player.png").getImage();
 		if(playerx+playerW>Game.WIDTH)
 			playerx=Game.WIDTH-playerW;
@@ -70,7 +68,23 @@ public class Player extends JPanel
 		g.drawImage(player,playerx,playery,null);
 	}
 	public void toBall() {
+		for (Ball ball : balls) {
+			if(collision(ball)) {
+					ball.setVel(5, -5);
+					
+			}
+		}
 		
 	}
+	public Boolean collision(Ball b) {
+		Rectangle ballRectangle= new Rectangle(b.getX(),b.getY(),60,60);
+		Rectangle playerRectangle= new Rectangle(this.playerx,this.playery,100,100);
+		if (ballRectangle.getBounds().intersects(playerRectangle.getBounds())||
+				playerRectangle.getBounds().intersects(ballRectangle.getBounds())
+				) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
-
