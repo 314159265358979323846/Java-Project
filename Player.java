@@ -146,7 +146,7 @@ public class Player extends JPanel
             if (bound%2 == 0)  
                 pred = pred - bound*650      ;              
             else 
-                pred = 200 - (pred - 650*bound);
+                pred = 650 - (pred - 650*bound);
         }else if (bound < 0) {//# pred < 0
             if (bound%2 ==1) 
                 pred = Math.abs(pred - (bound+1) *650);
