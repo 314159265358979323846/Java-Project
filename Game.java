@@ -8,8 +8,8 @@ public class Game extends JPanel
 	static final int WIDTH=650;
 	static final int HEIGHT=850;
 	private Image background=new ImageIcon("img/background.png").getImage();
-	Player player1=new Player("normal",1);
-	Player player2=new Player("normal",2);
+	Player player1=new Player(Mode.mode,Menu.person,1);
+	Player player2=new Player(Mode.mode,Menu.person,2);
 	public Game()
 	{
 		Player.addBall(new Ball());
