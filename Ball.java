@@ -6,6 +6,8 @@ import java.util.Random;
 import javax.swing.*;
 public class Ball extends JPanel
 {
+	public static int player1= 0;
+	public static int player2 = 0;
 	public Ball() 
 	{
 		this(Game.WIDTH/2-ballW/2, Game.HEIGHT/2-ballH/2, 10,10);
@@ -78,11 +80,26 @@ public class Ball extends JPanel
 		}
 		if(bally + ballH >= Game.HEIGHT || bally <= 0)
 		{
+			if(Mode.mode.contentEquals("special"))
+			{
+				if(bally <= 0)
+					player2++;
+				else
+					player1++;
+//				System.out.printf("1p: %d 2p : %d\n", player1, player2);
+			}
 			vy = -vy;
 			bally += vy;
 //			special = 0;
 		}
 	}
+	
+	public void paint(Graphics g)
+	{
+		super.paint(g);
+		g.drawImage(ball,ballx,bally,null);
+	}
+	
 	private void slowDown()
 	{
 		double rate = 1.2;
@@ -137,12 +154,6 @@ public class Ball extends JPanel
 		}
 	}
 	
-	public void paint(Graphics g)
-	{
-		super.paint(g);
-		g.drawImage(ball,ballx,bally,null);
-	}
-	
 	private Timer timer=new Timer(5000,new ActionListener()
 	{
 		public void actionPerformed(ActionEvent e)
@@ -173,12 +184,16 @@ public class Ball extends JPanel
 				Player.addBall(new Ball(ballx - ballW, bally - ballW, vx/fold + 1, vy/fold + 1));
 				Player.addBall(new Ball(ballx + ballW, bally - ballW, vx/fold + 1, vy/fold + 1));
 			}
-			else if(special == 5 && Player.base < 3)
+			else if(special == 5)
 			{
-				Player.base++;
-				Player.addBall(new Ball(ballx - ballW, bally + ballW, vx, vy));
+				if(Player.base < 3)
+				{
+					Player.base++;
+					Player.addBall(new Ball(ballx - ballW, bally + ballW, vx, vy));
+				}
+				special = 1;
 			}
-			System.out.println(special);
+//			System.out.println(special);
 		}// 1-5
 	});
 	
