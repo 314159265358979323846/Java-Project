@@ -1,4 +1,5 @@
 
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -31,10 +32,12 @@ public class Game extends JPanel
 							player1.player_right();
 							break;
 						case KeyEvent.VK_A:
-							player2.player_left();
+							if(Menu.person==2)
+							 player2.player_left();
 							break;
 						case KeyEvent.VK_D:
-							player2.player_right();
+							if(Menu.person==2)
+							 player2.player_right();
 							break;
 						default:
 							break;
@@ -51,10 +54,12 @@ public class Game extends JPanel
 							player1.releaseX();
 							break;
 						case KeyEvent.VK_A:
-							player2.releaseX();
+							if(Menu.person==2)
+							 player2.releaseX();
 							break;
 						case KeyEvent.VK_D:
-							player2.releaseX();
+							if(Menu.person==2)
+							 player2.releaseX();
 							break;
 						default:
 							break;
