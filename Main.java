@@ -48,6 +48,12 @@ public class Main extends JFrame
 						getContentPane().add(point2,null);
 						point2.setBounds(525,850,100,50);
 						point2.setFont(font);
+						if(Ball.player1==5 && Menu.person==2)
+						{
+							((Timer)e.getSource()).stop();
+							Finish finish=new Finish(2);
+							dispose();
+						}
 					}
 				}
 			});
