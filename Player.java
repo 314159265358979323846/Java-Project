@@ -16,7 +16,7 @@ public class Player extends JPanel
 	private  int person;
 	public static ArrayList<Ball> balls = new ArrayList<Ball>();
 	private Image player;
-	
+	public static int base = 1;
 	
 	public Player(int person){
 		this.person=person;
@@ -66,6 +66,11 @@ public class Player extends JPanel
 	{
 		super.paint(g);
 		g.drawImage(player,playerx,playery,null);
+	}
+	public static void popBall()
+	{
+		while(balls.size() != base)
+			balls.remove(balls.size() - 1);
 	}
 	public void toBall() {
 		for (Ball ball : balls) {
