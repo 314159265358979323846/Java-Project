@@ -11,17 +11,14 @@ public class Player extends JPanel
 	private  int playerx=Game.WIDTH/2-playerW/2;
 	private  int playery=Game.HEIGHT-playerH;
 	private  int movex=0;
-	private  int p,person;
-	private  String mode;
+	private  int person;
 	public static ArrayList<Ball> balls = new ArrayList<Ball>();
 	private Image player;
 	
 	
-	public Player(String mode,int person,int p){
-		this.mode=mode;
-		this.p=p;
+	public Player(int person){
 		this.person=person;
-		switch (p) {
+		switch (person) {
 		case 1:
 			playery=Game.HEIGHT-playerH;
 			break;
@@ -68,5 +65,7 @@ public class Player extends JPanel
 		super.paint(g);
 		g.drawImage(player,playerx,playery,null);
 	}
-	
+	public void toBall() {
+		
+	}
 }
