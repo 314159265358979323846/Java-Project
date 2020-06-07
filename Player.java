@@ -58,8 +58,9 @@ public class Player extends JPanel
 	
 	public void move()
 	{
-		playerx+=movex;
 		toBall();
+		playerx+=movex;
+		
 		//player=new ImageIcon("img/player.png").getImage();
 		if(playerx+playerW>Game.WIDTH)
 			playerx=Game.WIDTH-playerW;
@@ -89,37 +90,24 @@ public class Player extends JPanel
 				else if(b.getX()+30>playerx+playerW&&(b.getVx()<0))
 					b.setVel(-b.getVx()+r.nextInt(6)-3, -b.getVy());
 				else 	
-			      b.setVel(b.getVx()+r.nextInt(6)-3, -b.getVy()+r.nextInt(6)-3);	
-				if(Mode.mode.equals("special")) {
-					switch (r.nextInt(3)) {
-					case 0:
-						//choose wave/circle/slow down......
-						break;
-					case 1:
-						
-						break;
-					case 2:
-	
-						break;
-					default:
-						break;
-					}
-				}
-	
-					
+			      b.setVel(b.getVx()+r.nextInt(6)-3, -b.getVy()+r.nextInt(6)-3);		
 			}
 		}
 		
 	}
 	
 	public Boolean collision(Ball b) {
-		Rectangle ballRectangle= new Rectangle(b.getX(),b.getY(),60,60);
+		Rectangle ballRectangle= new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60);
 		Rectangle playerRectangle= new Rectangle(playerx+movex,playery,playerW,playerH);
 		if (ballRectangle.getBounds().intersects(playerRectangle.getBounds())||
 				playerRectangle.getBounds().intersects(ballRectangle.getBounds())
 				) {//Point2D.distance(b.getX()+30, b.getY()+30,playerx+50 ,playery+50)<80
-			
+			while (new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds().intersects(playerRectangle.getBounds())||
+			playerRectangle.getBounds().intersects(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds())) {
 				b.setPos(b.getX()-b.getVx(),b.getY()-b.getVy());
+				
+			}
+				
 			
 			if(b.getX() + 60 >= Game.WIDTH )
 				b.setPos(Game.WIDTH-60, b.getY());
@@ -139,21 +127,21 @@ public class Player extends JPanel
 		// TODO Auto-generated method stub
 		int pred;
 		if (b.getVy()< 0) {// ball goes down
-        int x =  (b.getY()-playerH)/b.getVy(); // x means how many frames before catch the ball
-         pred = b.getX()+(b.getVx()*x);  //# ¹w´ú³Ì²×¦ì¸m # pred means predict ball landing site 
-        int bound = pred / 650;// # Determine if it is beyond the boundary
-        if (bound > 0) { //# pred > 200 # fix landing position
+        int x =  (b.getY()-playerH)/b.getVy(); 
+         pred = b.getX()+(b.getVx()*x);  
+        int bound = pred / 650;
+        if (bound > 0) { 
             if (bound%2 == 0)  
                 pred = pred - bound*650      ;              
             else 
                 pred = 650 - (pred - 650*bound);
-        }else if (bound < 0) {//# pred < 0
+        }else if (bound < 0) {
             if (bound%2 ==1) 
                 pred = Math.abs(pred - (bound+1) *650);
             else 
                 pred = pred + Math.abs(bound*650);
         }		
-		}else {//ball goes up
+		}else {
         pred = 325;
 		
 		}
@@ -164,8 +152,6 @@ public class Player extends JPanel
 			 player_right(); //# goes right
 	    else 
 	    	player_left();
-		
-		
 		
 		
 		playerx+=movex;
