@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,13 +9,13 @@ public class Game extends JPanel
 	static final int WIDTH=650;
 	static final int HEIGHT=850;
 	private Image background=new ImageIcon("img/background.png").getImage();
-	Player player1=new Player(Mode.mode,Menu.person,1);
-	Player player2=new Player(Mode.mode,Menu.person,2);
+	Player player1=new Player(1);
+	Player player2=new Player(2);
 	public Game()
 	{
 		Player.addBall(new Ball());
-//		Player.addBall(new Ball(400, 300, 5, 5));
-//		Player.addBall(new Ball(200, 200, 5, -5));
+		Player.addBall(new Ball(10, 10, 5, 5));
+		Player.addBall(new Ball(200, 200, 5, -5));
 		this.setFocusable(true);
 		this.addKeyListener(new KeyListener()
 			{
