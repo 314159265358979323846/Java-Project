@@ -8,12 +8,13 @@ public class Player extends JPanel
 {
 	private static int playerW=100;
 	private static int playerH=100;
-	private  int playerx=Game.WIDTH/2-playerW/2;
-	private  int playery=Game.HEIGHT-playerH;
-	private  int movex=0;
-	private  int p,person;
-	private  String mode;
+	private int playerx=Game.WIDTH/2-playerW/2;
+	private int playery=Game.HEIGHT-playerH;
+	private int movex=0;
+	private int p,person;
+	private String mode;
 	public static ArrayList<Ball> balls = new ArrayList<Ball>();
+	public static int base = 1;
 	private Image player;
 	
 	
@@ -37,7 +38,11 @@ public class Player extends JPanel
 	{
 		balls.add(ball);
 	}
-	
+	public static void popBall()
+	{
+		while(balls.size() != base)
+			balls.remove(balls.size() - 1);
+	}
 	
 	public  int player_left()
 	{

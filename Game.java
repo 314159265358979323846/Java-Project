@@ -13,8 +13,8 @@ public class Game extends JPanel
 	public Game()
 	{
 		Player.addBall(new Ball());
-		Player.addBall(new Ball(10, 10, 5, 5));
-		Player.addBall(new Ball(200, 200, 5, -5));
+//		Player.addBall(new Ball(400, 300, 5, 5));
+//		Player.addBall(new Ball(200, 200, 5, -5));
 		this.setFocusable(true);
 		this.addKeyListener(new KeyListener()
 			{

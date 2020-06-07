@@ -1,19 +1,35 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.*;
 public class Ball extends JPanel
 {
 	public Ball() 
 	{
-		setPos(Game.WIDTH/2-ballW/2, Game.HEIGHT/2-ballH/2);
-		setVel(3, 3);
-		ball=new ImageIcon("img/ball.png").getImage();
+		this(Game.WIDTH/2-ballW/2, Game.HEIGHT/2-ballH/2, 10,10);
 	}
 	
 	public Ball(int x, int y, int vx, int vy)
 	{
 		setPos(x, y);
 		setVel(vx, vy);
+		deg = rdn.nextDouble();
 		ball=new ImageIcon("img/ball.png").getImage();
+		special = 0;
+		if(Mode.mode.contentEquals("special"))
+			timer.start();
+	}
+	
+	public int getVx()
+	{
+		return vx;
+	}
+	
+	public int getVy()
+	{
+		return vy;
 	}
 	
 	public int getX()
@@ -34,20 +50,60 @@ public class Ball extends JPanel
 	
 	public void setVel(int vx, int vy)
 	{
+		special = 0;
 		this.vx = vx;
 		this.vy = vy;
 	}
 	
 	public void move()
 	{
-//		System.out.printf("%d %d\n", vx, vy);
+		if(special == 1)
+			circle();
+		else if(special == 2 || special == 3)
+			wave();
+		else if (special  == 0 && (Math.pow(vx, 2) + Math.pow(vy, 2) > 100))
+			slowDown();
+		if(vx == 0)
+			vx = rdn.nextInt(4)+1;
+		if(vy == 0)
+			vy = rdn.nextInt(4)+1;
+		ballCollision();
 		ballx += vx;
 		bally += vy;
-		ballCollision();
 		if(ballx + ballW >= Game.WIDTH || ballx <= 0)
+		{
 			vx = -vx;
+			ballx += vx;
+//			special = 0;
+		}
 		if(bally + ballH >= Game.HEIGHT || bally <= 0)
+		{
 			vy = -vy;
+			bally += vy;
+//			special = 0;
+		}
+	}
+	private void slowDown()
+	{
+		double rate = 1.2;
+		vx /= rate;
+		vy /= rate;
+	}
+	private void circle()
+	{
+		v = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2) );
+		vx = (int)Math.round(Math.sin(deg) * v);
+		vy = (int)Math.round(Math.cos(deg) * v);
+		deg += 0.1;
+	}
+	
+	private void wave()
+	{
+		if(special == 2)
+			vx = (int)Math.round(Math.sin(deg) * v);
+		else
+			vy = (int)Math.round(Math.sin(deg) * v);
+		deg += 0.1;
 	}
 	
 	private void ballCollision()
@@ -56,12 +112,12 @@ public class Ball extends JPanel
 		{
 			if(this != ball)
 			{
-				int centerx = ballx + ballW/2, centery = bally + ballH/2;
-				int bx = ball.ballx + ballW/2, by = ball.bally + ballH/2;
+				int centerx = ballx + ballW/2 + vx, centery = bally + ballH/2 + vy;
+				int bx = ball.ballx + ballW/2 + ball.vx, by = ball.bally + ballH/2 + ball.vy;
 				if(Math.pow(centerx - bx, 2) +Math.pow(centery - by,  2) <= Math.pow(ballW, 2))
 				{
-					
-//					System.out.println(tt++);
+					special = 0;
+					ball.special = 0;
 					double ux = (bx - centerx)/Math.sqrt(Math.pow(centerx - bx, 2) +Math.pow(centery - by,  2));
 					double uy = (by - centery)/Math.sqrt(Math.pow(centerx - bx, 2) +Math.pow(centery - by,  2)); // unit vector
 					double vx_ = (vx * (bx - centerx) + vy * (by - centery)) * ux/Math.sqrt(Math.pow(centerx - bx, 2) +Math.pow(centery - by,  2));
@@ -72,7 +128,6 @@ public class Ball extends JPanel
 					double _vyN = vy - vy_;
 					double vxN_ = ball.vx - _vx;
 					double vyN_ = ball.vy - _vy;
-//					System.out.printf("%d %d\n", Math.round(_vx + _vxN), Math.round(_vy + _vyN));
 					vx = (int)Math.round(_vx + _vxN);
 					vy = (int)Math.round(_vy + _vyN);
 					ball.vx = (int)Math.round(vx_ + vxN_);
@@ -88,12 +143,55 @@ public class Ball extends JPanel
 		g.drawImage(ball,ballx,bally,null);
 	}
 	
+	private Timer timer=new Timer(5000,new ActionListener()
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			if((special == 1 || special == 2 || special == 3) && deg < 3.14)
+				return;
+			if(del)
+			{
+				Player.popBall();
+				del = false;
+			}
+			int temp = rdn.nextInt(6);
+			while(temp == special)
+				temp = rdn.nextInt(6);
+			special = temp;
+			if(special == 1 || special == 2 || special == 3)
+				deg = 0;
+			if(special == 2)
+				v = vx;
+			else if(special == 3)
+				v = vy;
+			else if(special == 4)
+			{
+				del = true;
+				int fold = 2;
+				Player.addBall(new Ball(ballx - ballW, bally + ballW, vx/fold + 1, vy/fold + 1));
+				Player.addBall(new Ball(ballx + ballW, bally + ballW, vx/fold + 1, vy/fold + 1));
+				Player.addBall(new Ball(ballx - ballW, bally - ballW, vx/fold + 1, vy/fold + 1));
+				Player.addBall(new Ball(ballx + ballW, bally - ballW, vx/fold + 1, vy/fold + 1));
+			}
+			else if(special == 5 && Player.base < 3)
+			{
+				Player.base++;
+				Player.addBall(new Ball(ballx - ballW, bally + ballW, vx, vy));
+			}
+			System.out.println(special);
+		}// 1-5
+	});
+	
 	private static int ballW = 60;
 	private static int ballH = 60;
 	private int ballx;
 	private int bally;
 	private int vx;
 	private int vy;
-	static int tt = 0;
+	private int special;
+	private double deg = 0;
+	private static Random rdn = new Random();
+	private double v; 
+	private static boolean del = false;
 	private Image ball;
 }
