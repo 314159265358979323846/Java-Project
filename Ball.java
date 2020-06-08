@@ -10,7 +10,7 @@ public class Ball extends JPanel
 	public static int player2 = 0;
 	public Ball() 
 	{
-		this(Game.WIDTH/2-ballW/2, Game.HEIGHT/2-ballH/2, 5,5);
+		this(Game.WIDTH/2-ballW/2, Game.HEIGHT/2-ballH/2, 1,1);
 	}
 	
 	public Ball(int x, int y, int vx, int vy)

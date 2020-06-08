@@ -8,8 +8,8 @@ import javax.swing.*;
 
 public class Player extends JPanel
 {
-	private static int playerW=150;
-	private static int playerH=50;
+	public  int playerW=150;
+	public static int playerH=50;
 	public static int winner=0;
 	private  int playerx=Game.WIDTH/2-playerW/2;
 	private  int playery=Game.HEIGHT-playerH;
@@ -54,10 +54,10 @@ public class Player extends JPanel
 	
 	public void move()
 	{
+		
 		toBall();
 		playerx+=movex;
-		
-		//player=new ImageIcon("img/player.png").getImage();
+
 		if(playerx+playerW>Game.WIDTH)
 			playerx=Game.WIDTH-playerW;
 		else if(playerx<=0)
@@ -67,8 +67,6 @@ public class Player extends JPanel
 	public void paint(Graphics g)
 	{
 		super.paint(g);
-		//g.drawImage(player,playerx,playery,null);
-		
 		g.fillRect(playerx, playery, playerW, playerH);
 	}
 	public static void popBall()

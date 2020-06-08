@@ -6,12 +6,12 @@ public class Main extends JFrame
 {
 	JLabel point1=new JLabel("0");
 	JLabel point2=new JLabel("0");
-	JLabel label1=new JLabel("Lose Ball:");
-	JLabel label2=new JLabel("Lose Ball:");
+	JLabel label1=new JLabel("1P Lose Ball:");
+	JLabel label2=new JLabel("2P Lose Ball:");
 	public Main()
 	{
 		setResizable(false);
-		Font font=new Font("Time News Roman",Font.BOLD,32);
+		Font font=new Font("Time News Roman",Font.BOLD,28);
 		if(Mode.mode.contentEquals("special"))
 			setSize(Game.WIDTH,900);
 		else
