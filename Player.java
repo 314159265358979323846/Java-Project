@@ -6,11 +6,6 @@ import java.util.Random;
 
 import javax.swing.*;
 
-import sun.jvmstat.monitor.Units;
-import sun.tools.jconsole.Plotter.Unit;
-
-
-
 public class Player extends JPanel
 {
 	private static int playerW=150;
