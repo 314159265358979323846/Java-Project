@@ -15,12 +15,14 @@ public class Player extends JPanel
 	private  int playery=Game.HEIGHT-playerH;
 	private  int movex=0;
 	private  int person;
+	private int change=0;
 	public static ArrayList<Ball> balls = new ArrayList<Ball>();
 	private Image player;
 	public static int base = 1;
 	
 	public Player(int person){
 		this.person=person;
+		timer.start();
 		switch (person) {
 		case 1:
 			playery=Game.HEIGHT-playerH;
@@ -54,10 +56,21 @@ public class Player extends JPanel
 	
 	public void move()
 	{
-		
+		switch (change) {
+		case 1://long
+			if(playerW<250)
+				playerW+=2;
+			break;
+		case 2://short
+			if(playerW>100)
+				playerW-=2;
+			break;
+
+		default:
+			break;
+		}
 		toBall();
 		playerx+=movex;
-
 		if(playerx+playerW>Game.WIDTH)
 			playerx=Game.WIDTH-playerW;
 		else if(playerx<=0)
@@ -155,4 +168,18 @@ public class Player extends JPanel
 		else if(playerx<=0)
 			playerx=0;
 	}
+	
+	private Timer timer=new Timer(4000,new ActionListener()
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			Random random= new Random();
+			change=random.nextInt(2)+1;		
+			System.out.println("in");
+			}
+//			
+		}// 1-5
+	);
+	
+	
 }
