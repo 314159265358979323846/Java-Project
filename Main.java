@@ -51,8 +51,14 @@ public class Main extends JFrame
 						if(Ball.player1==5 && Menu.person==2)
 						{
 							((Timer)e.getSource()).stop();
-							Finish finish=new Finish(2);
+		                    Finish finish=new Finish(2);
 							dispose();
+						}
+					}else {
+						if(game.isWin()) {
+							((Timer)e.getSource()).stop();
+	                        Finish finish=new Finish(Player.winner);
+	                        dispose();
 						}
 					}
 				}
@@ -62,4 +68,5 @@ public class Main extends JFrame
 		game.setBounds(0,0,Game.WIDTH,Game.HEIGHT);
 		timer.start();
 	}
+	
 }

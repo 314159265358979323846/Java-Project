@@ -14,7 +14,7 @@ public class Finish extends JFrame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(null);
-		getContentPane().setBackground(Color.BLACK);
+		getContentPane().setBackground(Color.GRAY);
 		setUndecorated(true);
 		setVisible(true);
 		ImageIcon finish=new ImageIcon("img/finish.png");

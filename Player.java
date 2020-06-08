@@ -15,6 +15,7 @@ public class Player extends JPanel
 {
 	private static int playerW=150;
 	private static int playerH=50;
+	public static int winner=0;
 	private  int playerx=Game.WIDTH/2-playerW/2;
 	private  int playery=Game.HEIGHT-playerH;
 	private  int movex=0;

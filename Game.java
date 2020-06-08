@@ -81,6 +81,20 @@ public class Game extends JPanel
 		player1.paint(g);
 		Player.balls.forEach(ball ->ball.paint(g));
 	}
+    public Boolean isWin() {
+    	if(Player.balls.get(0).getY()<=2) {//||Player.balls.get(0).getY()>=(Game.HEIGHT-60)) {
+    		Player.winner=1;
+    		return true;
+    	}else if(Player.balls.get(0).getY()>=(Game.HEIGHT-60)){
+    		if(Menu.person==1)
+    			 Player.winner=3;
+    		else 
+    			Player.winner=2;
+		    return true;
+    	}else{
+			return false;
+		}
+	}
 	public void move()
 	{
 		player1.move();
