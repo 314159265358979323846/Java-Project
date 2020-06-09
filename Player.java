@@ -160,7 +160,19 @@ public class Player extends JPanel
 	    else 
 	    	player_left();
 		
-		
+		switch (change) {
+		case 1://long
+			if(playerW<250)
+				playerW+=2;
+			break;
+		case 2://short
+			if(playerW>100)
+				playerW-=2;
+			break;
+
+		default:
+			break;
+		}
 		playerx+=movex;
 		toBall();
 		if(playerx+playerW>Game.WIDTH)
