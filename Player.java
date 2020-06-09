@@ -4,6 +4,9 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class Player extends JPanel
@@ -187,7 +190,6 @@ public class Player extends JPanel
 		{
 			Random random= new Random();
 			change=random.nextInt(2)+1;		
-			System.out.println("in");
 			}
 //			
 		}// 1-5

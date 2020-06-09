@@ -57,6 +57,7 @@ public class Mode extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					mode="normal";
+					Game.playSound("normal.wav");
 					Main main=new Main();
 					dispose();
 				}
@@ -67,6 +68,7 @@ public class Mode extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					mode="special";
+					Game.playSound("circle.wav");
 					Main main=new Main();
 					dispose();
 				}

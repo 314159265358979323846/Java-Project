@@ -57,6 +57,7 @@ public class Menu extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					person=1;
+					Game.playSound("button.wav");
 					Mode mode=new Mode();
 					dispose();
 				}
@@ -67,6 +68,7 @@ public class Menu extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					person=2;
+					Game.playSound("button.wav");
 					Mode mode=new Mode();
 					dispose();
 				}
@@ -82,6 +84,7 @@ public class Menu extends JFrame
 	}
 	public static void main(String[] args)
 	{
+		Game.playSound("sao.wav");
 		new Menu();
 	}
 }

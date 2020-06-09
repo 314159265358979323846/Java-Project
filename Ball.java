@@ -53,6 +53,7 @@ public class Ball extends JPanel
 	public void setVel(int vx, int vy)
 	{
 		special = 0;
+		Game.playSound("bounce.wav");
 		this.vx = vx;
 		this.vy = vy;
 	}
@@ -74,6 +75,7 @@ public class Ball extends JPanel
 		bally += vy;
 		if(ballx + ballW >= Game.WIDTH || ballx <= 0)
 		{
+			Game.playSound("bounce.wav");
 			vx = -vx;
 			ballx += vx;
 //			special = 0;
@@ -88,6 +90,7 @@ public class Ball extends JPanel
 					player1++;
 //				System.out.printf("1p: %d 2p : %d\n", player1, player2);
 			}
+			Game.playSound("bounce.wav");
 			vy = -vy;
 			bally += vy;
 //			special = 0;
@@ -133,6 +136,7 @@ public class Ball extends JPanel
 				int bx = ball.ballx + ballW/2 + ball.vx, by = ball.bally + ballH/2 + ball.vy;
 				if(Math.pow(centerx - bx, 2) +Math.pow(centery - by,  2) <= Math.pow(ballW, 2))
 				{
+					Game.playSound("collide.wav");
 					special = 0;
 					ball.special = 0;
 					double ux = (bx - centerx)/Math.sqrt(Math.pow(centerx - bx, 2) +Math.pow(centery - by,  2));
@@ -171,12 +175,21 @@ public class Ball extends JPanel
 			special = temp;
 			if(special == 1 || special == 2 || special == 3)
 				deg = 0;
-			if(special == 2)
+			if(special == 1)
+				Game.playSound("circle.wav");
+			else if(special == 2)
+			{
+				Game.playSound("wave.wav");
 				v = vx;
+			}
 			else if(special == 3)
+			{
+				Game.playSound("wave.wav");
 				v = vy;
+			}
 			else if(special == 4)
 			{
+				Game.playSound("split.wav");
 				del = true;
 				int fold = 2;
 				Player.addBall(new Ball(ballx - ballW, bally + ballW, vx/fold + 1, vy/fold + 1));
@@ -188,6 +201,7 @@ public class Ball extends JPanel
 			{
 				if(Player.base < 3)
 				{
+					Game.playSound("split.wav");
 					Player.base++;
 					Player.addBall(new Ball(ballx - ballW, bally + ballW, vx, vy));
 				}
