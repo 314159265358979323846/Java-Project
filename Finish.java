@@ -6,6 +6,7 @@ public class Finish extends JFrame
 {
 	JLabel label;
 	JButton button=new JButton("Quit");
+	JButton button2=new JButton("Restart");
 	private int win;
 	public Finish(int win)
 	{
@@ -32,19 +33,35 @@ public class Finish extends JFrame
 		label.setBounds(150,50,400,100);
 		label.setFont(new Font("Time News Roman",Font.BOLD,40));
 		label.setForeground(Color.RED);
-		getContentPane().add(button,null);
-		button.setBounds(150,450,300,100);
-		button.setFont(new Font("Time News Roman",Font.BOLD,32));
-		button.setOpaque(false);
-		button.setBackground(Color.BLUE);
-		button.setForeground(Color.BLUE);
-		button.setBorderPainted(false);
-		button.addActionListener(new ActionListener()
+		getContentPane().add(button1,null);
+		button1.setBounds(350,450,200,100);
+		button1.setFont(new Font("Time News Roman",Font.BOLD,32));
+		button1.setOpaque(false);
+		button1.setBackground(Color.BLUE);
+		button1.setForeground(Color.BLUE);
+		button1.setBorderPainted(false);
+		getContentPane().add(button2,null);
+		button2.setBounds(50,450,200,100);
+		button2.setFont(new Font("Time News Roman",Font.BOLD,32));
+		button2.setOpaque(false);
+		button2.setBackground(Color.BLUE);
+		button2.setForeground(Color.BLUE);
+		button2.setBorderPainted(false);
+		button1.addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
 					System.exit(0);
+				}
+			});
+		button2.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					dispose();
+					Menu menu=new Menu();
 				}
 			});
 	}
