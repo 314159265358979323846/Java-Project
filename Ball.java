@@ -13,7 +13,7 @@ public class Ball extends JPanel
 	
 	public Ball() 
 	{
-		this(Game.WIDTH/2-ballW/2,Game.HEIGHT/2-ballH/2,1,1);
+		this(Game.WIDTH/2-ballW/2, Game.HEIGHT/2-ballH/2, 5, 5);
 	}
 
 	public Ball(int x,int y,int vx,int vy)
@@ -45,12 +45,6 @@ public class Ball extends JPanel
 	public int getY()
 	{
 		return bally;
-	}
-	
-	public void setPos(int x,int y)
-	{
-		ballx=x;
-		bally=y;
 	}
 	
 	public void setVel(int vx,int vy)
@@ -104,9 +98,15 @@ public class Ball extends JPanel
 		g.drawImage(ball,ballx,bally,null);
 	}
 	
+	private void setPos(int x,int y)
+	{
+		ballx=x;
+		bally=y;
+	}
+	
 	private void slowDown()
 	{
-		double rate=1.2;
+		double rate=1.1;
 		vx/=rate;
 		vy/=rate;
 	}
