@@ -13,7 +13,7 @@ public class Menu extends JFrame
 	static int person=0;
 	public Menu()
 	{
-		music.play("sao.wav");
+		music.play("bgm.wav");
 		person=0;
 		setResizable(false);
 		setSize(600,600);

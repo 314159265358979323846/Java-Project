@@ -172,10 +172,48 @@ public class Ball extends JPanel
 		}
 	}
 	
+	private boolean ballCollision(int num, int fold)
+	{
+		for(Ball ball:Player.balls)
+		{
+			if(num == 4)
+			{
+				int[] dx =  {-ballW, ballW, -ballW, ballW};
+				int[] dy =  {ballW, ballW, -ballW, -ballW};
+				for(int i = 0; i < 4; i++)
+				{
+					int centerx = ballx + ballW/2 + dx[i];
+					int centery = bally + ballH/2 + dy[i];
+					int bx = ball.ballx + ballW/2 + ball.vx;
+					int by = ball.bally + ballH/2 + ball.vy;
+					if(Math.pow(centerx-bx, 2) + Math.pow(centery-by, 2) <= Math.pow(ballW, 2))
+						return true;
+				}
+			}
+			else if(num == 1)
+			{
+				int centerx = ballx + ballW/2 + vx/fold + ballW;
+				int centery = bally + ballH/2 + vy/fold + ballW;
+				int bx = ball.ballx + ballW/2 + ball.vx;
+				int by = ball.bally + ballH/2 + ball.vy;
+				if(Math.pow(centerx-bx, 2) + Math.pow(centery-by, 2) <= Math.pow(ballW, 2))
+					return true;
+			}
+		}
+		return false;
+	}
+	
 	private Timer timer=new Timer(5000,new ActionListener()
 	{
+		
 		public void actionPerformed(ActionEvent e)
 		{
+			if(Main.stop==true)
+			{
+				System.out.println("timer stoped");
+				((Timer)e.getSource()).stop();
+				return;
+			}
 			if((special==1 || special==2 || special==3) && deg<3.14)
 				return;
 			if(del)
@@ -205,26 +243,31 @@ public class Ball extends JPanel
 			}
 			else if(special==4)
 			{
-				sound.play("split.wav");
-				del=true;
 				int fold=2;
-				Player.addBall(new Ball(ballx-ballW,bally+ballW,vx/fold+1,vy/fold+1));
-				Player.addBall(new Ball(ballx+ballW,bally+ballW,vx/fold+1,vy/fold+1));
-				Player.addBall(new Ball(ballx-ballW,bally-ballW,vx/fold+1,vy/fold+1));
-				Player.addBall(new Ball(ballx+ballW,bally-ballW,vx/fold+1,vy/fold+1));
+				if(!ballCollision(4, fold) && ballx - ballW >= 0 && ballx + 2 * ballW <= Game.WIDTH && bally - ballW >= 0 && bally + 2 * ballH <= Game.HEIGHT)
+				{
+					sound.play("split.wav");
+					del=true;
+					Player.addBall(new Ball(ballx-ballW,bally+ballW,vx/fold,vy/fold));
+					Player.addBall(new Ball(ballx+ballW,bally+ballW,vx/fold,vy/fold));
+					Player.addBall(new Ball(ballx-ballW,bally-ballW,vx/fold,vy/fold));
+					Player.addBall(new Ball(ballx+ballW,bally-ballW,vx/fold,vy/fold));
+					System.out.println("ball newed");
+				}
 			}
 			else if(special==5)
 			{
 				if(Player.base<3)
 				{
-					sound.play("split.wav");
-					Player.base++;
-					Player.addBall(new Ball(ballx-ballW,bally+ballW,vx,vy));
+					if(!ballCollision(1, 1) && ballx - ballW >= 0 && ballx + 2 * ballW <= Game.WIDTH && bally - ballW >= 0 && bally + 2 * ballH <= Game.HEIGHT)
+					{
+						sound.play("split.wav");
+						Player.base++;
+						Player.addBall(new Ball(ballx+ballW,bally+ballW,vx,vy));
+					}
 				}
 				special=1;
-			}
-			if(Main.stop==true)
-				((Timer)e.getSource()).stop();
+			}			
 		}
 	});
 }
