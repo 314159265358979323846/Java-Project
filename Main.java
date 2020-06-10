@@ -104,8 +104,10 @@ public class Main extends JFrame
 	                        dispose();
 						}
 					}
+					
 				}
 			});
+	
 		game.setVisible(true);
 		add(game);
 		game.setBounds(0,0,Game.WIDTH,Game.HEIGHT);

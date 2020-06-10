@@ -77,9 +77,9 @@ public class Game extends JPanel
 	}
     public int isWin()
 	{
-    	if(Player.balls.get(0).getY()<=(Player.playerH/3))
+    	if(Player.balls.get(0).getY()<=(Player.playerH/10))
     		return 1;
-    	else if(Player.balls.get(0).getY()+Ball.ballW>=(Game.HEIGHT-2))
+    	else if(Player.balls.get(0).getY()+Ball.ballW>=(Game.HEIGHT-Ball.ballH/10))
 		{
     		if(Menu.person==1)
 				return 3;
@@ -89,13 +89,13 @@ public class Game extends JPanel
 		return 0;
 	}
 	public void move()
-	{
+	{Player.balls.forEach(ball->ball.move());
 		player1.move();
 		if(Menu.person==2)
 			player2.move();
 		else
 			player2.computerMove(Player.balls.get(0));
-	    Player.balls.forEach(ball->ball.move());
+	    
 	}
 /*	public static synchronized void playSound(final String url)
 	{

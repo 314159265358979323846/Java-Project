@@ -41,12 +41,12 @@ public class Player extends JPanel
 	
 	public int player_left()
 	{
-		return movex=-3;
+		return movex=-5;
 	}
 
 	public int player_right()
 	{
-		return movex=3;
+		return movex=5;
 	}
 
 	public int releaseX()
@@ -59,7 +59,7 @@ public class Player extends JPanel
 		switch(change)
 		{
 			case 1://long
-				if(playerW<250)
+				if(playerW<20)
 					playerW+=2;
 				break;
 			case 2://short
@@ -93,23 +93,27 @@ public class Player extends JPanel
 	{
 		for(Ball b:balls)
 		{
-			if(collision(b))
+			if(collision(b)&&!b.isc&&!collisionI(b))
 			{
-		/*
-		 * v
-		 * 
-		 * */
 				Random r=new Random();
+			
 				if( b.getVx()*movex<0)//hit left and
-					b.setVel(-b.getVx()+r.nextInt(2)-1,-b.getVy()+r.nextInt(2)-1);
+					b.setVel(-b.getVx(),-b.getVy());
 				else if( b.getVx()*movex>0)
-					b.setVel(b.getVx()+r.nextInt(2)-1,-b.getVy()+r.nextInt(2)-1);
+					b.setVel(b.getVx(),-b.getVy());
 				else if( (b.getX()+30<playerx)&&(b.getVx()>0))//hit left and
 					b.setVel(-b.getVx(),-b.getVy());
 				else if(b.getX()+30>playerx+playerW&&(b.getVx()<0))//hit right
 					b.setVel(-b.getVx(),-b.getVy());
 				else 	//hit top
-			      b.setVel(b.getVx(),-b.getVy());		
+			      b.setVel(b.getVx(),-b.getVy());	
+				
+				
+				b.isc=true;
+			
+			}else {
+				if(!collisionI(b))
+				  b.isc=false;
 			}
 			
 		}
@@ -118,28 +122,31 @@ public class Player extends JPanel
 	public Boolean collision(Ball b)
 	{
 		Rectangle ballRectangle=new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),Ball.ballH,Ball.ballW);
-		Rectangle playerRectangle=new Rectangle(playerx+movex,playery,playerW,playerH);
-		Rectangle player=new Rectangle(playerx-movex,playery,playerW,playerH);
-		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds())
-				|| player.getBounds().intersects(ballRectangle.getBounds())|| ballRectangle.getBounds().intersects(player.getBounds()))
+		Rectangle playerRectangle=new Rectangle(playerx+movex,playery,playerW+3,playerH+3);
+		//Rectangle player=new Rectangle(playerx-movex,playery,playerW+3,playerH+3);
+		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds()))
+				//|| player.getBounds().intersects(ballRectangle.getBounds())|| ballRectangle.getBounds().intersects(player.getBounds()))
 		{
-			/*while(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds().intersects(player.getBounds()) || playerRectangle.getBounds().intersects(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds())) 
-				b.setPos(b.getX()-b.getVx(),b.getY()-b.getVy());
-			if(b.getX()+60>=Game.WIDTH)
-				b.setPos(Game.WIDTH-60,b.getY()-b.getVy());
-			if(b.getX()<=0)
-				b.setPos(0,b.getY()-b.getVy());
-			if(b.getY()+60>=Game.HEIGHT)
-				b.setPos(b.getX()-b.getVx(),Game.HEIGHT-60);
-			if( b.getY()<=0)
-				b.setPos(b.getX()-b.getVx(),2);
-			*/
+			
 			return true;
 		}
 		else
 			return false;
 	}
-
+	public Boolean collisionI(Ball b)
+	{
+		Rectangle ballRectangle=new Rectangle(b.getX(),b.getY(),Ball.ballH,Ball.ballW);
+		Rectangle playerRectangle=new Rectangle(playerx,playery,playerW,playerH);
+		//Rectangle player=new Rectangle(playerx-movex,playery,playerW+3,playerH+3);
+		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds()))
+				//|| player.getBounds().intersects(ballRectangle.getBounds())|| ballRectangle.getBounds().intersects(player.getBounds()))
+		{
+			
+			return true;
+		}
+		else
+			return false;
+	}
 	
 	public void computerMove(Ball b)
 	{
