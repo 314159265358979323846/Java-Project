@@ -104,12 +104,16 @@ public class Player extends JPanel
 		 * 
 		 * */
 				Random r=new Random();
-				if((b.getX()+30<playerx)&&(b.getVx()>0))//hit left and
-					b.setVel(-b.getVx(),-b.getVy()+r.nextInt(6)-3);
+				if( b.getVx()*movex<0)//hit left and
+					b.setVel(-b.getVx()+r.nextInt(2)-1,-b.getVy()+r.nextInt(2)-1);
+				else if( b.getVx()*movex>0)
+					b.setVel(b.getVx()+r.nextInt(2)-1,-b.getVy()+r.nextInt(2)-1);
+				else if( (b.getX()+30<playerx)&&(b.getVx()>0))//hit left and
+					b.setVel(-b.getVx(),-b.getVy());
 				else if(b.getX()+30>playerx+playerW&&(b.getVx()<0))//hit right
-					b.setVel(-b.getVx()+r.nextInt(6)-3,-b.getVy());
+					b.setVel(-b.getVx(),-b.getVy());
 				else 	//hit top
-			      b.setVel(b.getVx()+r.nextInt(6)-3,-b.getVy()+r.nextInt(6)-3);		
+			      b.setVel(b.getVx(),-b.getVy());		
 			}
 			
 		}
@@ -119,7 +123,7 @@ public class Player extends JPanel
 	{
 		Rectangle ballRectangle=new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60);
 		Rectangle playerRectangle=new Rectangle(playerx+movex,playery,playerW,playerH);
-		Rectangle player=new Rectangle(playerx+movex,playery,playerW,playerH);
+		Rectangle player=new Rectangle(playerx,playery,playerW,playerH);
 		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds()))
 		{
 			while(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds().intersects(player.getBounds()) || playerRectangle.getBounds().intersects(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds()))
