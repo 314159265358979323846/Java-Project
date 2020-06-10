@@ -99,6 +99,7 @@ public class Player extends JPanel
 		{
 			if(collision(b))
 			{
+		if(Mode.mode.equals("normal")) {
 				Random r=new Random();
 				if((b.getX()+30<playerx)&&(b.getVx()>0))
 					b.setVel(-b.getVx(),-b.getVy()+r.nextInt(6)-3);
@@ -107,6 +108,7 @@ public class Player extends JPanel
 				else 	
 			      b.setVel(b.getVx()+r.nextInt(6)-3,-b.getVy()+r.nextInt(6)-3);		
 			}
+			}
 		}
 	}
 	
@@ -114,18 +116,19 @@ public class Player extends JPanel
 	{
 		Rectangle ballRectangle=new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60);
 		Rectangle playerRectangle=new Rectangle(playerx+movex,playery,playerW,playerH);
+		Rectangle player=new Rectangle(playerx+movex,playery,playerW,playerH);
 		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds()))
 		{
-			while(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds()))
+			while(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds().intersects(player.getBounds()) || playerRectangle.getBounds().intersects(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds()))
 				b.setPos(b.getX()-b.getVx(),b.getY()-b.getVy());
 			if(b.getX()+60>=Game.WIDTH)
-				b.setPos(Game.WIDTH-60,b.getY());
+				b.setPos(Game.WIDTH-60,b.getY()-b.getVy());
 			if(b.getX()<=0)
-				b.setPos(0,b.getY());
+				b.setPos(0,b.getY()-b.getVy());
 			if(b.getY()+60>=Game.HEIGHT)
-				b.setPos(b.getX(),Game.HEIGHT-60);
+				b.setPos(b.getX()-b.getVx(),Game.HEIGHT-60);
 			if( b.getY()<=0)
-				b.setPos(b.getX(),2);
+				b.setPos(b.getX()-b.getVx(),2);
 			return true;
 		}
 		else
