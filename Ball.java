@@ -203,7 +203,7 @@ public class Ball extends JPanel
 		{
 			if(Main.stop==true)
 			{
-				System.out.println("timer stoped");
+//				System.out.println("timer stoped");
 				((Timer)e.getSource()).stop();
 				return;
 			}
@@ -273,8 +273,6 @@ public class Ball extends JPanel
 	private Random rdn=new Random();
 	private boolean del=false;
 	private Image ball;
-	//test
-	public   Boolean isc=false;
-	//
+	public  Boolean isc=false;
 	private final Sound sound=Sound.getInstance();
 }

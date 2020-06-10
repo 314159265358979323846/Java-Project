@@ -125,11 +125,8 @@ public class Player extends JPanel
 		Rectangle playerRectangle=new Rectangle(playerx+movex,playery,playerW+3,playerH+3);
 		//Rectangle player=new Rectangle(playerx-movex,playery,playerW+3,playerH+3);
 		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds()))
-				//|| player.getBounds().intersects(ballRectangle.getBounds())|| ballRectangle.getBounds().intersects(player.getBounds()))
-		{
-			
+				//|| player.getBounds().intersects(ballRectangle.getBounds())|| ballRectangle.getBounds().intersects(player.getBounds()))			
 			return true;
-		}
 		else
 			return false;
 	}
@@ -140,10 +137,7 @@ public class Player extends JPanel
 		//Rectangle player=new Rectangle(playerx-movex,playery,playerW+3,playerH+3);
 		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds()))
 				//|| player.getBounds().intersects(ballRectangle.getBounds())|| ballRectangle.getBounds().intersects(player.getBounds()))
-		{
-			
 			return true;
-		}
 		else
 			return false;
 	}

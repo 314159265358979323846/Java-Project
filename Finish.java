@@ -53,6 +53,7 @@ public class Finish extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					System.exit(0);
+					(Sound.getInstance()).play("button.wav");
 				}
 			});
 		button2.addActionListener(new ActionListener()
@@ -61,6 +62,7 @@ public class Finish extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					dispose();
+					(Sound.getInstance()).play("button.wav");
 					Ball.player1=0;
 					Ball.player2=0;
 					Player.base=0;

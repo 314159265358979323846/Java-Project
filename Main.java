@@ -115,6 +115,7 @@ public class Main extends JFrame
 	}
 	public void reset()
 	{
+		
 		stop=true;
 		Ball.player1=0;
 		Ball.player2=0;
