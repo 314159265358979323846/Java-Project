@@ -97,9 +97,9 @@ public class Player extends JPanel
 			{
 				Random r=new Random();
 			
-				if( b.getVx()*movex<0)//hit left and
+				if( (b.getVx()*movex<0)||(b.getVx()==0&&movex<0))//hit left and
 					b.setVel(-b.getVx(),-b.getVy());
-				else if( b.getVx()*movex>0)
+				else if( (b.getVx()*movex>0)||(b.getVx()==0&&movex>0))
 					b.setVel(b.getVx(),-b.getVy());
 				else if( (b.getX()+30<playerx)&&(b.getVx()>0))//hit left and
 					b.setVel(-b.getVx(),-b.getVy());

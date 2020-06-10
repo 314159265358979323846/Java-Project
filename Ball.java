@@ -13,7 +13,7 @@ public class Ball extends JPanel
 	
 	public Ball() 
 	{
-		this(Game.WIDTH/2-ballW/2, Game.HEIGHT*2/3, 5,-5);
+		this(Game.WIDTH/2-ballW/2, Game.HEIGHT*2/3, 3,-3);
 	}
 
 	public Ball(int x,int y,int vx,int vy)
