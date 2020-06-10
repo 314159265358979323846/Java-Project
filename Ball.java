@@ -6,22 +6,11 @@ import javax.swing.*;
 
 public class Ball extends JPanel
 {
-	static final int ballW=60;
-	static final int ballH=60;
-	private int ballx;
-	private int bally;
-	private int vx;
-	private int vy;
-	private int special;
-	private double deg;
-	private double v;
-	private Random rdn=new Random();
-	private boolean del=false;
-	private Image ball;
+	public static final int ballW=60;
+	public static final int ballH=60;
 	public static int player1=0;
 	public static int player2=0;
-	final Sound sound=Sound.getInstance();
-
+	
 	public Ball() 
 	{
 		this(Game.WIDTH/2-ballW/2,Game.HEIGHT/2-ballH/2,1,1);
@@ -186,6 +175,8 @@ public class Ball extends JPanel
 					int centery = bally + ballH/2 + dy[i];
 					int bx = ball.ballx + ballW/2 + ball.vx;
 					int by = ball.bally + ballH/2 + ball.vy;
+					if(centery + ballW/2 >= Game.HEIGHT - Player.playerH || centery - ballW/2 < Player.playerH)
+						return true;
 					if(Math.pow(centerx-bx, 2) + Math.pow(centery-by, 2) <= Math.pow(ballW, 2))
 						return true;
 				}
@@ -196,6 +187,8 @@ public class Ball extends JPanel
 				int centery = bally + ballH/2 + vy/fold + ballW;
 				int bx = ball.ballx + ballW/2 + ball.vx;
 				int by = ball.bally + ballH/2 + ball.vy;
+				if(centery + ballW/2 >= Game.HEIGHT - Player.playerH || centery - ballW/2 < Player.playerH)
+					return true;
 				if(Math.pow(centerx-bx, 2) + Math.pow(centery-by, 2) <= Math.pow(ballW, 2))
 					return true;
 			}
@@ -270,4 +263,16 @@ public class Ball extends JPanel
 			}			
 		}
 	});
+	
+	private int ballx;
+	private int bally;
+	private int vx;
+	private int vy;
+	private int special;
+	private double deg;
+	private double v;
+	private Random rdn=new Random();
+	private boolean del=false;
+	private Image ball;
+	private final Sound sound=Sound.getInstance();
 }

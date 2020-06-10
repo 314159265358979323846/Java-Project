@@ -11,8 +11,8 @@ import javax.swing.*;
 public class Player extends JPanel
 {
 	public static ArrayList<Ball> balls=new ArrayList<Ball>();
-	public static int base=1;
-	public static int playerH=50;
+	public static int base;
+	public static final int playerH=50;
 	private int playerW=150;
 	private int playerx=Game.WIDTH/2-playerW/2;
 	private int playery=Game.HEIGHT-playerH;

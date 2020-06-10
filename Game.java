@@ -14,6 +14,7 @@ public class Game extends JPanel
 	Player player2=new Player(2);
 	public Game()
 	{
+		Player.base = 1;
 		Player.addBall(new Ball());
 		this.setFocusable(true);
 		this.addKeyListener(new KeyListener()
