@@ -13,7 +13,7 @@ public class Ball extends JPanel
 	
 	public Ball() 
 	{
-		this(Game.WIDTH/2-ballW/2, Game.HEIGHT/2-ballH/2, 2, 2);
+		this(Game.WIDTH/2-ballW/2, Game.HEIGHT*2/3, 5, -5);
 	}
 
 	public Ball(int x,int y,int vx,int vy)
@@ -61,7 +61,7 @@ public class Ball extends JPanel
 			circle();
 		else if(special==2 || special==3)
 			wave();
-		else if (special==0 && (Math.pow(vx,2)+Math.pow(vy,2)>100))
+		else if (special==0 && (Math.pow(vx,2)+Math.pow(vy,2)>50))
 			slowDown();
 		if(vx==0)
 			vx=rdn.nextInt(4)+1;
@@ -245,7 +245,6 @@ public class Ball extends JPanel
 					Player.addBall(new Ball(ballx+ballW,bally+ballW,vx/fold,vy/fold));
 					Player.addBall(new Ball(ballx-ballW,bally-ballW,vx/fold,vy/fold));
 					Player.addBall(new Ball(ballx+ballW,bally-ballW,vx/fold,vy/fold));
-					System.out.println("ball newed");
 				}
 			}
 			else if(special==5)

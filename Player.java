@@ -139,7 +139,7 @@ public class Player extends JPanel
 		else
 			return false;
 	}
-	}
+
 	
 	public void computerMove(Ball b)
 	{
