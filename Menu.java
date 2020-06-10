@@ -37,22 +37,22 @@ public class Menu extends JFrame
 		button1.setBounds(400,100,200,100);
 		button1.setFont(font);
 		button1.setOpaque(false);
-		button1.setBackground(Color.BLUE);
-		button1.setForeground(Color.BLUE);
+		button1.setBackground(Color.YELLOW);
+		button1.setForeground(Color.YELLOW);
 		button1.setBorderPainted(false);
 		contain.add(button2);
 		button2.setBounds(400,250,200,100);
 		button2.setFont(font);
 		button2.setOpaque(false);
-		button2.setBackground(Color.BLUE);
-		button2.setForeground(Color.BLUE);
+		button2.setBackground(Color.YELLOW);
+		button2.setForeground(Color.YELLOW);
 		button2.setBorderPainted(false);
 		contain.add(button3);
 		button3.setBounds(400,400,200,100);
 		button3.setFont(font);
 		button3.setOpaque(false);
-		button3.setBackground(Color.BLUE);
-		button3.setForeground(Color.BLUE);
+		button3.setBackground(Color.YELLOW);
+		button3.setForeground(Color.YELLOW);
 		button3.setBorderPainted(false);
 
 		button1.addActionListener(new ActionListener()

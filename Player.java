@@ -41,12 +41,12 @@ public class Player extends JPanel
 	
 	public int player_left()
 	{
-		return movex=-5;
+		return movex=-3;
 	}
 
 	public int player_right()
 	{
-		return movex=5;
+		return movex=3;
 	}
 
 	public int releaseX()
@@ -59,7 +59,7 @@ public class Player extends JPanel
 		switch(change)
 		{
 			case 1://long
-				if(playerW<20)
+				if(playerW<200)
 					playerW+=2;
 				break;
 			case 2://short
