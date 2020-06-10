@@ -8,9 +8,10 @@ public class Menu extends JFrame
 	JButton button2=new JButton("2 Player");
 	JButton button3=new JButton("Quit");
 	JLabel label=new JLabel("Game Menu");
-	static int person;
+	static int person=0;
 	public Menu()
 	{
+		person=0;
 		setResizable(false);
 		setSize(600,600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

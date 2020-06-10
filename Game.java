@@ -1,14 +1,10 @@
-
-
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 public class Game extends JPanel
 {
 	static final int WIDTH=650;
@@ -19,8 +15,6 @@ public class Game extends JPanel
 	public Game()
 	{
 		Player.addBall(new Ball());
-//		Player.addBall(new Ball(10, 10, 5, 5));
-//		Player.addBall(new Ball(200, 200, 5, -5));
 		this.setFocusable(true);
 		this.addKeyListener(new KeyListener()
 			{
@@ -69,58 +63,57 @@ public class Game extends JPanel
 							break;
 					}
 				}
-			
-							
-				@Override
-				public void keyTyped(KeyEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}});
+				public void keyTyped(KeyEvent e) {}
+			});
 	}
 	public void paint(Graphics g)
 	{
 		super.paint(g);
 		g.drawImage(background,0,0,null);
-		player2.paint(g);
 		player1.paint(g);
-		Player.balls.forEach(ball ->ball.paint(g));
+		player2.paint(g);
+		Player.balls.forEach(ball->ball.paint(g));
 	}
-    public Boolean isWin() {
-    	if(Player.balls.get(0).getY()<=(Player.playerH/3)) {//||Player.balls.get(0).getY()>=(Game.HEIGHT-60)) {
-    		Player.winner=1;
-    		return true;
-    	}else if(Player.balls.get(0).getY()+60>=(Game.HEIGHT-2)){
+    public int isWin()
+	{
+    	if(Player.balls.get(0).getY()<=(Player.playerH/3))
+    		return 1;
+		else if(Player.balls.get(0).getY()+60>=(Game.HEIGHT-2))
+		{
     		if(Menu.person==1)
-    			 Player.winner=3;
+				return 3;
     		else 
-    			Player.winner=2;
-		    return true;
-    	}else{
-			return false;
-		}
+    			return 2;
+    	}
+		return 0;
 	}
 	public void move()
 	{
 		player1.move();
-		if(Menu.person==2) {
-			  player2.move();
-			}else {
-				player2.computerMove(Player.balls.get(0));
-			}
-	    Player.balls.forEach(ball ->ball.move());
+		if(Menu.person==2)
+			player2.move();
+		else
+			player2.computerMove(Player.balls.get(0));
+	    Player.balls.forEach(ball->ball.move());
 	}
-	public static synchronized void playSound(final String url) {
-		  new Thread(new Runnable() {
-		    public void run() {
-		      try {
-		        Clip clip = AudioSystem.getClip();
-		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(Main.class.getResourceAsStream("/sound/" + url));
-		        clip.open(inputStream);
-		        clip.start(); 
-		      } catch (Exception e) {
-		        System.err.println(e.getMessage());
-		      }
-		    }
-		  }).start();
-		}
+	public static synchronized void playSound(final String url)
+	{
+		new Thread(new Runnable()
+		{
+		    public void run()
+			{
+				try
+				{
+					Clip clip=AudioSystem.getClip();
+					AudioInputStream inputStream=AudioSystem.getAudioInputStream(Main.class.getResourceAsStream("/sound/"+url));
+					clip.open(inputStream);
+					clip.start(); 
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
 }

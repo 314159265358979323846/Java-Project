@@ -4,13 +4,14 @@ import javax.swing.*;
 
 public class Mode extends JFrame
 {
-	static String mode;
 	JButton button1=new JButton("Normal");
 	JButton button2=new JButton("Special");
 	JButton button3=new JButton("Return");
 	JLabel label=new JLabel("Game Mode");
+	static String mode="";
 	public Mode()
 	{
+		mode="";
 		setResizable(false);
 		setSize(600,600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

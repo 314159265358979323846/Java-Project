@@ -5,9 +5,9 @@ import javax.swing.*;
 public class Finish extends JFrame
 {
 	JLabel label;
-	JButton button=new JButton("Quit");
+	JButton button1=new JButton("Quit");
 	JButton button2=new JButton("Restart");
-	private int win;
+	private int win=0;
 	public Finish(int win)
 	{
 		setResizable(false);
@@ -61,6 +61,11 @@ public class Finish extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					dispose();
+					Ball.player1=0;
+					Ball.player2=0;
+					Player.base=0;
+					Player.popBall();
+					Main.stop=false;
 					Menu menu=new Menu();
 				}
 			});

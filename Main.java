@@ -8,6 +8,7 @@ public class Main extends JFrame
 	JLabel point2=new JLabel("0");
 	JLabel label1=new JLabel("1P Lose Ball:");
 	JLabel label2=new JLabel("2P Lose Ball:");
+	static boolean stop=false;
 	public Main()
 	{
 		setResizable(false);
@@ -48,35 +49,57 @@ public class Main extends JFrame
 						getContentPane().add(point2,null);
 						point2.setBounds(525,850,100,50);
 						point2.setFont(font);
-						int maxLoseBalls = 10; 
-						if(Ball.player1== maxLoseBalls && Menu.person==2)
+						int maxLoseBalls=10;
+						if(Ball.player1==maxLoseBalls && Menu.person==2)
 						{
 							((Timer)e.getSource()).stop();
+							reset();
 							Finish finish=new Finish(2);
 							dispose();
 						}
-						else if(Ball.player2== maxLoseBalls && Menu.person==2)
+						else if(Ball.player2==maxLoseBalls && Menu.person==2)
 						{
 							((Timer)e.getSource()).stop();
+							reset();
 							Finish finish=new Finish(1);
 							dispose();
 						}
-						else if(Ball.player1== maxLoseBalls && Menu.person==1)
+						else if(Ball.player1==maxLoseBalls && Menu.person==1)
 						{
 							((Timer)e.getSource()).stop();
+							reset();
 							Finish finish=new Finish(3);
 							dispose();
 						}
-						else if(Ball.player2== maxLoseBalls && Menu.person==1)
+						else if(Ball.player2==maxLoseBalls && Menu.person==1)
 						{
 							((Timer)e.getSource()).stop();
+							reset();
 							Finish finish=new Finish(1);
 							dispose();
 						}
-					}else {
-						if(game.isWin()) {
+					}
+					else
+					{
+						if(game.isWin()==1)
+						{
 							((Timer)e.getSource()).stop();
-	                        Finish finish=new Finish(Player.winner);
+							reset();
+	                        Finish finish=new Finish(1);
+	                        dispose();
+						}
+						else if(game.isWin()==2)
+						{
+							((Timer)e.getSource()).stop();
+							reset();
+	                        Finish finish=new Finish(2);
+	                        dispose();
+						}
+						else if(game.isWin()==3)
+						{
+							((Timer)e.getSource()).stop();
+							reset();
+	                        Finish finish=new Finish(3);
 	                        dispose();
 						}
 					}
@@ -87,5 +110,12 @@ public class Main extends JFrame
 		game.setBounds(0,0,Game.WIDTH,Game.HEIGHT);
 		timer.start();
 	}
-	
+	public void reset()
+	{
+		stop=true;
+		Ball.player1=0;
+		Ball.player2=0;
+		Player.base=0;
+		Player.popBall();
+	}
 }
