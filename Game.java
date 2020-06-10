@@ -79,7 +79,7 @@ public class Game extends JPanel
 	{
     	if(Player.balls.get(0).getY()<=(Player.playerH/3))
     		return 1;
-		else if(Player.balls.get(0).getY()+60>=(Game.HEIGHT-2))
+    	else if(Player.balls.get(0).getY()+Ball.ballW>=(Game.HEIGHT-2))
 		{
     		if(Menu.person==1)
 				return 3;

@@ -13,13 +13,13 @@ public class Player extends JPanel
 	private int playerx=Game.WIDTH/2-playerW/2;
 	private int playery=Game.HEIGHT-playerH;
 	private int movex=0;
-	private int person=0;
+
 	private int change=0;
-	private Image player;
+
 	
 	public Player(int person)
 	{
-		this.person=person;
+		
 		timer.start();
 		switch(person)
 		{
@@ -41,12 +41,12 @@ public class Player extends JPanel
 	
 	public int player_left()
 	{
-		return movex=-5;
+		return movex=-3;
 	}
 
 	public int player_right()
 	{
-		return movex=5;
+		return movex=3;
 	}
 
 	public int releaseX()
@@ -117,12 +117,13 @@ public class Player extends JPanel
 	
 	public Boolean collision(Ball b)
 	{
-		Rectangle ballRectangle=new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60);
+		Rectangle ballRectangle=new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),Ball.ballH,Ball.ballW);
 		Rectangle playerRectangle=new Rectangle(playerx+movex,playery,playerW,playerH);
-		Rectangle player=new Rectangle(playerx,playery,playerW,playerH);
-		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds()))
+		Rectangle player=new Rectangle(playerx-movex,playery,playerW,playerH);
+		if(ballRectangle.getBounds().intersects(playerRectangle.getBounds()) || playerRectangle.getBounds().intersects(ballRectangle.getBounds())
+				|| player.getBounds().intersects(ballRectangle.getBounds())|| ballRectangle.getBounds().intersects(player.getBounds()))
 		{
-			while(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds().intersects(player.getBounds()) || playerRectangle.getBounds().intersects(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds()))
+			/*while(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds().intersects(player.getBounds()) || playerRectangle.getBounds().intersects(new Rectangle(b.getX()+b.getVx(),b.getY()+b.getVy(),60,60).getBounds())) 
 				b.setPos(b.getX()-b.getVx(),b.getY()-b.getVy());
 			if(b.getX()+60>=Game.WIDTH)
 				b.setPos(Game.WIDTH-60,b.getY()-b.getVy());
@@ -132,10 +133,12 @@ public class Player extends JPanel
 				b.setPos(b.getX()-b.getVx(),Game.HEIGHT-60);
 			if( b.getY()<=0)
 				b.setPos(b.getX()-b.getVx(),2);
+			*/
 			return true;
 		}
 		else
 			return false;
+	}
 	}
 	
 	public void computerMove(Ball b)
@@ -182,8 +185,8 @@ public class Player extends JPanel
 			default:
 				break;
 		}
-		playerx+=movex;
-		toBall();
+		
+		toBall();playerx+=movex;
 		if(playerx+playerW>Game.WIDTH)
 			playerx=Game.WIDTH-playerW;
 		else if(playerx<=0)
