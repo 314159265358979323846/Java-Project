@@ -99,16 +99,19 @@ public class Player extends JPanel
 		{
 			if(collision(b))
 			{
-		if(Mode.mode.equals("normal")) {
+		/*
+		 * v
+		 * 
+		 * */
 				Random r=new Random();
-				if((b.getX()+30<playerx)&&(b.getVx()>0))
+				if((b.getX()+30<playerx)&&(b.getVx()>0))//hit left and
 					b.setVel(-b.getVx(),-b.getVy()+r.nextInt(6)-3);
-				else if(b.getX()+30>playerx+playerW&&(b.getVx()<0))
+				else if(b.getX()+30>playerx+playerW&&(b.getVx()<0))//hit right
 					b.setVel(-b.getVx()+r.nextInt(6)-3,-b.getVy());
-				else 	
+				else 	//hit top
 			      b.setVel(b.getVx()+r.nextInt(6)-3,-b.getVy()+r.nextInt(6)-3);		
 			}
-			}
+			
 		}
 	}
 	
