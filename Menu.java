@@ -8,9 +8,12 @@ public class Menu extends JFrame
 	JButton button2=new JButton("2 Player");
 	JButton button3=new JButton("Quit");
 	JLabel label=new JLabel("Game Menu");
+	static Music music=new Music();
+	final Sound sound=Sound.getInstance();
 	static int person=0;
 	public Menu()
 	{
+		music.play("sao.wav");
 		person=0;
 		setResizable(false);
 		setSize(600,600);
@@ -58,7 +61,7 @@ public class Menu extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					person=1;
-					Game.playSound("button.wav");
+					sound.play("button.wav");
 					Mode mode=new Mode();
 					dispose();
 				}
@@ -69,7 +72,7 @@ public class Menu extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					person=2;
-					Game.playSound("button.wav");
+					sound.play("button.wav");
 					Mode mode=new Mode();
 					dispose();
 				}
@@ -85,7 +88,6 @@ public class Menu extends JFrame
 	}
 	public static void main(String[] args)
 	{
-		Game.playSound("sao.wav");
 		new Menu();
 	}
 }

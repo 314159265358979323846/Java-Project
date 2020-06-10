@@ -1,8 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+//import javax.sound.sampled.AudioInputStream;
+//import javax.sound.sampled.AudioSystem;
+//import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class Game extends JPanel
@@ -96,7 +96,7 @@ public class Game extends JPanel
 			player2.computerMove(Player.balls.get(0));
 	    Player.balls.forEach(ball->ball.move());
 	}
-	public static synchronized void playSound(final String url)
+/*	public static synchronized void playSound(final String url)
 	{
 		new Thread(new Runnable()
 		{
@@ -115,5 +115,5 @@ public class Game extends JPanel
 				}
 			}
 		}).start();
-	}
+	}*/
 }

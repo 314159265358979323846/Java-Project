@@ -9,6 +9,8 @@ public class Mode extends JFrame
 	JButton button3=new JButton("Return");
 	JLabel label=new JLabel("Game Mode");
 	static String mode="";
+	Music music=new Music();
+	final Sound sound=Sound.getInstance();
 	public Mode()
 	{
 		mode="";
@@ -58,7 +60,7 @@ public class Mode extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					mode="normal";
-					Game.playSound("normal.wav");
+					sound.play("normal.wav");
 					Main main=new Main();
 					dispose();
 				}
@@ -69,7 +71,7 @@ public class Mode extends JFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					mode="special";
-					Game.playSound("circle.wav");
+					sound.play("circle.wav");
 					Main main=new Main();
 					dispose();
 				}

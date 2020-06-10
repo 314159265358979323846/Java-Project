@@ -20,6 +20,7 @@ public class Ball extends JPanel
 	private Image ball;
 	public static int player1=0;
 	public static int player2=0;
+	final Sound sound=Sound.getInstance();
 
 	public Ball() 
 	{
@@ -66,7 +67,7 @@ public class Ball extends JPanel
 	public void setVel(int vx,int vy)
 	{
 		special=0;
-		Game.playSound("bounce.wav");
+		sound.play("bounce.wav");
 		this.vx=vx;
 		this.vy=vy;
 	}
@@ -88,7 +89,7 @@ public class Ball extends JPanel
 		bally+=vy;
 		if(ballx+ballW>=Game.WIDTH || ballx<=0)
 		{
-			Game.playSound("bounce.wav");
+			sound.play("bounce.wav");
 			vx=-vx;
 			ballx+=vx;
 		}
@@ -102,7 +103,7 @@ public class Ball extends JPanel
 					player1++;
 //				System.out.printf("1p: %d 2p : %d\n", player1, player2);
 			}
-			Game.playSound("bounce.wav");
+			sound.play("bounce.wav");
 			vy=-vy;
 			bally+=vy;
 		}
@@ -149,7 +150,7 @@ public class Ball extends JPanel
 				int by=ball.bally+ballH/2+ball.vy;
 				if(Math.pow(centerx-bx,2)+Math.pow(centery-by,2)<=Math.pow(ballW,2))
 				{
-					Game.playSound("collide.wav");
+					sound.play("collide.wav");
 					special=0;
 					ball.special=0;
 					double ux=(bx-centerx)/Math.sqrt(Math.pow(centerx-bx,2)+Math.pow(centery-by,2));
@@ -189,20 +190,22 @@ public class Ball extends JPanel
 			if(special==1 || special==2 || special==3)
 				deg=0;
 			if(special==1)
-				Game.playSound("circle.wav");
+			{
+				sound.play("circle.wav");
+			}
 			else if(special==2)
 			{
-				Game.playSound("wave.wav");
+				sound.play("wave.wav");
 				v=vx;
 			}
 			else if(special==3)
 			{
-				Game.playSound("wave.wav");
+				sound.play("wave.wav");
 				v=vy;
 			}
 			else if(special==4)
 			{
-				Game.playSound("split.wav");
+				sound.play("split.wav");
 				del=true;
 				int fold=2;
 				Player.addBall(new Ball(ballx-ballW,bally+ballW,vx/fold+1,vy/fold+1));
@@ -214,7 +217,7 @@ public class Ball extends JPanel
 			{
 				if(Player.base<3)
 				{
-					Game.playSound("split.wav");
+					sound.play("split.wav");
 					Player.base++;
 					Player.addBall(new Ball(ballx-ballW,bally+ballW,vx,vy));
 				}

@@ -9,6 +9,7 @@ public class Main extends JFrame
 	JLabel label1=new JLabel("1P Lose Ball:");
 	JLabel label2=new JLabel("2P Lose Ball:");
 	static boolean stop=false;
+	Music music=new Music();
 	public Main()
 	{
 		setResizable(false);
@@ -117,5 +118,6 @@ public class Main extends JFrame
 		Ball.player2=0;
 		Player.base=0;
 		Player.popBall();
+		Menu.music.stop();
 	}
 }
